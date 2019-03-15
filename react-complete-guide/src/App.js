@@ -45,7 +45,8 @@ state = {
   
   render () {
     const style = {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
+      color: 'white',
       font: 'inherit',
       color: '1px solid blue',
       padding: '8px',
@@ -67,18 +68,30 @@ state = {
           })}
         </div>
       );
+      style.backgroundColor = 'red';
     }
 
+    let classes = [];
+
+    if(this.state.persons.length <= 2){
+      classes.push('red');
+    }
+    if(this.state.persons.length <= 1){
+      classes.push('bold');
+    }
+
+
+
     return (
-      <div className="App">
-        <h1>React App</h1>
-        <p>This is really working!</p>
-        <button 
-          style={style}
-          onClick={this.togglePersonsHandler}>Toggle Persons
-        </button>
-        {persons}
-      </div>
+        <div className="App">
+          <h1>React App</h1>
+          <p className={classes.join(' ')}>This is really working!</p>
+          <button 
+            style={style}
+            onClick={this.togglePersonsHandler}>Toggle Persons
+          </button>
+          {persons}
+        </div>
     )
   }
   //return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'React App'));
